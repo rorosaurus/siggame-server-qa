@@ -13,6 +13,7 @@ Test.grid[2][2].append(bob)
 Test.grid[2][3].append(marv)
 Test.grid[0][3].append(sally)
 Test.grid[0][2].append(plant)
+
 class TestSequenceFunctions(unittest.TestCase):
     def setUp(self):
         pass
@@ -39,9 +40,6 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(marv.canEat,False)
         self.assertEqual(bob.currentHealth,10-(4-1)*Test.damageMul)
         self.assertEqual(marv.currentHealth,40+4*10)
-
-
-
 
     #Pre Conditions:
       #Marv is moving to a valid locationMarv has movement left, Marv has movement left
