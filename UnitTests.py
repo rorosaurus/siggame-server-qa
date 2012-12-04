@@ -5,20 +5,9 @@ import unittest
 import random
 import Test
 
-#bob = Test.Creature(33,2,2,0,120,10,2,1,4,4,4,1,30)
-#marv = Test.Creature(35,2,3,1,120,40,20,4,2,2,2,7,31)
-#sally = Test.Creature(37,0,3,1,120,90,20,4,2,2,2,7,31)
-#plant = Test.Plant(22,0,2,2,33,1)
-#Test.grid[2][2].append(bob)
-#Test.grid[2][3].append(marv)
-#Test.grid[0][3].append(sally)
-#Test.grid[0][2].append(plant)
-
 class TestSequenceFunctions(unittest.TestCase):
     def setUp(self):
         pass
-
-
 
     def test_Creature_Constructor(self):
         temp = Test.Creature(20,0,0,0,110,110,1,2,3,4,5,6,0)
@@ -88,7 +77,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
 
     #Pre Conditions:
-      #Marv is moving to a valid locationMarv has movement left, Marv has movement left
+      #Marv is moving to a valid locationMarv has movement left
     #Post Conditions
       #Marv's location is updated, Marv's health is decremented
     def test_move(self):
@@ -107,7 +96,7 @@ class TestSequenceFunctions(unittest.TestCase):
     #Post condition:
         #neither sally nor marv can breed or eat, sally and marv's health is decremented
         #a new creature is added to Player 2's breeding list
-    def test_zbreed(self):
+    def test_breed(self):
         self.marv = Test.Creature(35,2,3,1,120,80,20,4,2,2,2,7,31)
         sally = Test.Creature(37,3,3,1,120,90,20,4,2,2,2,7,31)
         Test.grid[2][3].append(self.marv)
@@ -132,7 +121,7 @@ class TestSequenceFunctions(unittest.TestCase):
     #marv can eat, Bob is in range of Marv, Bob is at low health, Marv is at low health
     #Post Conditions:
     #Marv can not eat again, Bob is killed, Marv regains some health
-    def test_eat_zcreature(self):
+    def test_eat_creature(self):
         self.bob = Test.Creature(33,2,2,0,120,40,2,1,4,4,4,1,30)
         self.marv = Test.Creature(35,2,3,1,120,40,20,4,2,2,2,7,31)
         Test.grid[2][2].append(self.bob)

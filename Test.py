@@ -154,10 +154,7 @@ class Creature(Mappable):
         elif not self.canBreed or not mate.canBreed:
             return "You already bred creature %i or mate %i this turn! You can't do it again."%(self.id,mate.id)
         # by default set all stats to average of parents
-        elif len(grid[self.x][self.y])>2:
-        #may not need any of this at all, bonus points to whomever triggers this case
-            baby = [baby.id for baby in self.creatures if baby.parentID == self.id and baby.x == self.x and baby.y == self.y]
-            return "The creature %i is already taking care of a baby %i"%(self.id,baby[0])
+
 
         newEnergy = (self.energy + mate.energy) / 2
         newDefense = (self.defense + mate.defense) / 2
