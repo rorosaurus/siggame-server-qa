@@ -22,11 +22,38 @@ class TestSequenceFunctions(unittest.TestCase):
         #Sally can eat, is in range of the plant
     #Postcondtions:
         #Sally gains health, the plant size is decremented
+
+    def test_Creature_Constructor(self):
+        temp = Test.Creature(20,0,0,0,110,110,1,2,3,4,5,6,0)
+        self.assertEqual(temp.x,0)
+        self.assertEqual(temp.y,0)
+        self.assertEqual(temp.owner,0)
+        self.assertEqual(temp.maxHealth,110)
+        self.assertEqual(temp.currentHealth,110)
+        self.assertEqual(temp.energy,1)
+        self.assertEqual(temp.carnivorism,2)
+        self.assertEqual(temp.herbivorism,3)
+        self.assertEqual(temp.speed,4)
+        self.assertEqual(temp.movementLeft,5)
+        self.assertEqual(temp.defense,6)
+        self.assertEqual(temp.parentID,0)
+        self.assertTrue(temp.canBreed)
+        self.assertTrue(temp.canEat)
+
+    def test_Plant_Constructor(self):
+        plant = Test.Plant(10,4,4,1,2,3)
+        self.assertEqual(plant.id,10)
+        self.assertEqual(plant.x,4)
+        self.assertEqual(plant.y,4)
+        self.assertEqual(plant.size,1)
+        self.assertEqual(plant.growthRate,2)
+        self.assertEqual(plant.turnsUntilGrowth,3)
+
     def test_eat_a_plant(self):
         self.assertEqual(sally.canEat,True)
         self.assertGreater(plant.size,0)
-        rest=sally.eat(plant.x,plant.y)
-        print (rest)
+        res=sally.eat(plant.x,plant.y)
+        self.assertTrue(res)
         self.assertEqual(sally.currentHealth,90+1*10)
         self.assertEqual(plant.size,2-1)
 
@@ -36,7 +63,8 @@ class TestSequenceFunctions(unittest.TestCase):
       #Marv can not eat again, Bob is killed, Marv regains some health
     def test_eat_creature(self):
         self.assertEqual(marv.canEat,True)
-        marv.eat(bob.x,bob.y)
+        res = marv.eat(bob.x,bob.y)
+        self.assertTrue(res)
         self.assertEqual(marv.canEat,False)
         self.assertEqual(bob.currentHealth,10-(4-1)*Test.damageMul)
         self.assertEqual(marv.currentHealth,40+4*10)
@@ -49,7 +77,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(Test.getObject(marv.x-1,marv.y),None)
         self.assertGreater(marv.movementLeft,0)
         res = marv.move(marv.x-1,marv.y)
-        print (res)
+        self.assertTrue(res)
         self.assertEqual([marv.x,marv.y],[1,3])
         self.assertEqual(marv.currentHealth,80-Test.healthPerMove)
 
@@ -65,7 +93,8 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(marv.canBreed,True)
         self.assertGreater(marv.currentHealth,Test.healthPerBreed)
         self.assertGreater(sally.currentHealth,Test.healthPerBreed)
-        marv.breed(sally)
+        res = marv.breed(sally)
+        self.assertTrue(res)
         self.assertEqual(sally.canEat,False)
         self.assertEqual(marv.canEat,False)
         self.assertEqual(sally.canBreed,False)
